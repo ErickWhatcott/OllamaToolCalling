@@ -33,7 +33,7 @@ public static partial class Program
     public static async Task Main()
     {
         try { Console.Clear(); } catch { }
-
+        List<Message> messages = [];
 
     start:
         Console.ForegroundColor = ConsoleColor.Green;
@@ -47,13 +47,13 @@ public static partial class Program
             goto start;
         }
 
+        if (!GlobalConfig.RememberContext)
+            messages.Clear();
+        messages.Add(new(ChatRole.User, user_prompt));
+
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"Running the prompt: {user_prompt}");
         Console.ForegroundColor = ConsoleColor.White;
-
-        List<Message> messages = [
-            new(ChatRole.User, user_prompt)
-        ];
 
         var req = new ChatRequest
         {
@@ -127,19 +127,19 @@ public static partial class Program
                 int promptTokens = doneSlice.PromptEvalCount;
                 int generatedTokens = doneSlice.EvalCount;
                 var total = promptTokens + generatedTokens;
-                
+
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"\n{total} / {requestOptions.NumCtx} tokens used. {promptTokens} were in the prompt.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
-        if (tools.Count > 0)
+        if (GlobalConfig.RememberContext || tools.Count > 0)
         {
             messages.Add(new()
             {
                 Content = content.ToString(),
-                Thinking = await SummarizeThoughts(thoughts.ToString(), tools),
+                Thinking = GlobalConfig.SummarizeThinking ? await SummarizeThoughts(thoughts.ToString(), tools) : thoughts.ToString(),
                 ToolCalls = tools,
                 Role = ChatRole.Assistant
             });
@@ -203,7 +203,7 @@ The LLM invoked the following tools. Please ensure that the summary is done in c
         {
             Messages = messages,
             Stream = GlobalConfig.StreamResponse,
-            Options = requestOptions
+            Options = requestOptions,
         };
         var chat = client.ChatAsync(req);
 
