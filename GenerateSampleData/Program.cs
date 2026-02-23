@@ -1,5 +1,4 @@
 using System.Text.Json;
-using BillRecord = OllamaFunc.BillRecord;
 
 const int LAWYERS = 8;
 const int CLIENTS = 25;
