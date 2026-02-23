@@ -1,17 +1,14 @@
 using System.Text.Json;
 using BillRecord = OllamaFunc.BillRecord;
 
+const int LAWYERS = 8;
+const int CLIENTS = 25;
+const int BILLS = 100;
+
 OllamaFunc func = new();
-var lawyers = await func.GenerateLawyerNames(count: 2);
-var clients = await func.GenerateClients(count: 3);
-
-List<BillRecord> bills = [];
-
-for(int i = 0; i < 10; i++)
-{
-    var billable = await func.GenerateBillable(lawyers, clients, DateTime.Today.AddDays(7), DateTime.Today);
-    bills.Add(billable);
-}
+var lawyers = await func.GenerateLawyerNames(count: LAWYERS);
+var clients = await func.GenerateClients(count: CLIENTS);
+var bills = await AsyncEnumerable.Range(0, count: BILLS).SelectAsync(async i => await func.GenerateBillable(lawyers, clients, DateTime.Today.AddDays(7), DateTime.Today)).ToListAsync();
 
 var response = new DataResponse
 {
