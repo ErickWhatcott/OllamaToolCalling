@@ -1,0 +1,123 @@
+{
+  "lawyers": [
+    "Emma Thompson",
+    "Jordan Hill"
+  ],
+  "clients": [
+    "12345-Alexander",
+    "67890-Barnes",
+    "54321-Morgan"
+  ],
+  "bills": [
+    {
+      "Date": "2026-02-23",
+      "Type": "Representing clients in custody hearings",
+      "Description": "Attorney representation in formal custody hearings where the primary focus is the negotiation, presentation, and advocacy of legal arguments before judicial personnel, involving the preparation and execution of legal documents such as custody petitions, child support calculations, evidence submissions, testimony coordination, and motion filings, with an emphasis on establishing legal grounds, protecting parental rights, safeguarding child welfare, and achieving favorable resolutions consistent with family laws and equitable parentage obligations.",
+      "Matter": "12345-Alexander\n\u0022Billable\u0022 Time Tracking",
+      "User": "Emma Thompson",
+      "Quantity": 0.08364436249257112,
+      "Rate": 375,
+      "NonBillable": 0,
+      "Billable": 31.36663593471417
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Mediating property division settlements",
+      "Description": "The legal task of mediating property division settlements involves providing skilled, neutral facilitation to parties engaged in contentious property division negotiations following a divorce, separation, or marital dissolution. This service includes the structured oversight of communication and compromise processes to help parties achieve mutually acceptable resolutions related to division of marital assets, including real property, financial accounts, business interests, vehicles, and personal property. The attorney conducts individual and joint sessions with participants to identify each party\u0027s substantive and emotional concerns, facilitates productive discussions through targeted questioning and objective guidance, and works to align shared values and reasonable compromises. The goal is to ensure that the resulting settlement agreement is both legally sound and administratively viable, while minimizing litigation and preserving relational and legal standing. All discussions remain confidential and are handled within a professional, impartial, and ethical framework consistent with standard rules of legal conduct.",
+      "Matter": "67890-Barnes\n\u0022Billable\u0022 Time Tracking",
+      "User": "Emma Thompson",
+      "Quantity": 1.8278668788177985,
+      "Rate": 375,
+      "NonBillable": 0,
+      "Billable": 685.4500795566745
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Representing clients in custody hearings",
+      "Description": "Represented clients in custody hearings.",
+      "Matter": "12345-Alexander\n\u0022Non-Billable\u0022 Time Tracking",
+      "User": "Emma Thompson",
+      "Quantity": 0.9350231509258466,
+      "Rate": 375,
+      "NonBillable": 350.6336815971925,
+      "Billable": 0
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Mediating property division settlements",
+      "Description": "Mediation services relating to the division of property following the termination of a marriage or dissolution of a relationship were provided to facilitate a negotiated resolution between the parties in accordance with applicable legal standards and the terms of the existing property agreement. This professional mediation session involved comprehensive consultation with both parties, focused on reviewing asset classifications, valuing property interests, and identifying equitable division options in a confidential, private environment conducive to mutual agreement. The mediator guided the process with neutrality, ensured compliance with applicable state statutes, and helped clarify rights, responsibilities, and future considerations relating to marital or shared financial property distribution. This service was rendered on one (1) occasion and included full documentation, facilitation of discussion, and a formal summary of the agreed property division terms to be executed as part of the finalized settlement protocol.",
+      "Matter": "54321-Morgan\n\u0022Billable\u0022 Time Tracking",
+      "User": "Jordan Hill",
+      "Quantity": 1.04130999805581,
+      "Rate": 375,
+      "NonBillable": 0,
+      "Billable": 390.4912492709288
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Mediating property division settlements",
+      "Description": "mediatng propert dyvisiun setelments oh gawrns thot rly not noice to graw the fild wih out the crrract kent fum wth no good poinc of vist in the law and it s hing to be hadd up by smlth flem with bad moneu in the back and althogh they say it its just mew fad. i snt the ryt stff t do the ryt thing inthe wrrk i did. the sattment got cack to wot i dunt noy and tge oher side gaw me no crrect i dunt wun the rly wot is the cirt. we trid doint to wook together bt no fowrd i nte wrof thay just said nothting at all and just mow it to the crrrct poin and no greeed to gow ahead for anyhong at all. its not wory well desrbed at a ll but it wot done so wok in gowd wod to gree wiv the rty pone in lage pown. wod have liked wut i kniw about how it goess with shtuff. but wu was not wot we shoold hav e bee. not so wort with that.",
+      "Matter": "12345-Alexander\n\u0022Non-Billable\u0022 Time Tracking",
+      "User": "Jordan Hill",
+      "Quantity": 1.4766283441596955,
+      "Rate": 375,
+      "NonBillable": 553.7356290598858,
+      "Billable": 0
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Representing clients in custody hearings",
+      "Description": "Representation in custody hearings involves advising and personally participating on behalf of clients in court proceedings related to parental or guardian custody determinations. This includes preparing pre-hearing documentation, including parenting plans, exhibits, and other evidence; presenting oral arguments in front of adjudicators or courts; conducting client interviews and gathering supporting documentation; communicating with opposing counsel and third-party stakeholders; negotiating settlements where possible; and providing strategic legal advice to navigate evidentiary rules, judicial priorities, and family dynamics. Representation includes all activities from motion filings and procedural compliance to post-hair communication and follow-up on adjudicated orders to protect the client\u2019s constitutional rights and familial interests under state child welfare and parental duties laws.",
+      "Matter": "54321-Morgan\n\u0022Billable\u0022 Time Tracking",
+      "User": "Emma Thompson",
+      "Quantity": 0.06100499096606771,
+      "Rate": 375,
+      "NonBillable": 0,
+      "Billable": 22.87687161227539
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Representing clients in custody hearings",
+      "Description": "Custody hearing representation provided with limited preparation and inadequate documentation.  \nService rendered without clear client coordination or prior assessment.  \nClient guidance given during proceedings.  \nOutdated case files used despite new developments.  \nBasic advocacy presented during appearances.  \nNo prior communication with relevant agencies.  \nMinimal effort demonstrated on record.  \nWork conducted without full case review.",
+      "Matter": "67890-Barnes\n\u0022Non-Billable\u0022 Time Tracking",
+      "User": "Jordan Hill",
+      "Quantity": 1.1320812278282597,
+      "Rate": 375,
+      "NonBillable": 424.5304604355974,
+      "Billable": 0
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Drafting prenuptial agreements",
+      "Description": "Drafting prenuptial agreements involving comprehensive legal preparation, including identification of each party\u2019s individually owned and jointly owned assets, careful analysis of income, inheritances, and future earnings potential, thorough review and inclusion of specific clauses regarding financial responsibilities during marital cohabitation, spousal obligations post-separation, debt distribution, and protection of inherited assets, as well as formulation of enforceable provisions addressing property settlement, child custody rights if relevant, and specific exclusions to avoid ambiguity and potential challenges in litigation or arbitration, ensuring full compliance with applicable state and provincial laws, regulations, and case precedent governing prenuptial agreement validity, execution, and enforceability. The process includes detailed drafting and structural review to provide balanced and legally sound agreements that clearly communicate each party\u2019s financial position and intentions in anticipation of marriage.",
+      "Matter": "12345-Alexander\n\u0022Billable\u0022 Time Tracking",
+      "User": "Emma Thompson",
+      "Quantity": 1.2550323464365523,
+      "Rate": 375,
+      "NonBillable": 0,
+      "Billable": 470.6371299137071
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Mediating property division settlements",
+      "Description": "Mediation services related to the equitable division of marital or joint property, including the facilitation of structured and productive discussions between disputing parties concerning tangible and intangible assets such as real estate, financial accounts, vehicles, investments, and other shared property. This service involves active negotiation, communication, process facilitation, and conflict-resolution techniques to achieve mutually acceptable outcomes, ensuring compliance with relevant legal standards and principles regarding equitable distributions under family law. Mediation occurs as part of post-docket proceedings following the formal separation or divorce petition and includes the preparation of a draft separation agreement reflecting mutually agreed terms, negotiation of financial arrangements, resolution of specific property division disputes, and delivery of an action-ready settlement proposal ready for finalization and documentation. This representation focuses exclusively on enabling parties to settle property claims in a timely and confidential setting, avoiding extended litigation or adverse courtroom exposure.",
+      "Matter": "54321-Morgan\n\u0022Billable\u0022 Time Tracking",
+      "User": "Jordan Hill",
+      "Quantity": 1.4019445296868716,
+      "Rate": 375,
+      "NonBillable": 0,
+      "Billable": 525.7291986325769
+    },
+    {
+      "Date": "2026-02-23",
+      "Type": "Drafting prenuptial agreements",
+      "Description": "dropt ing prenupial aggreements whihch was supose to be formil or shayl i dore for the couple. themself said they wunna be in on it much but then i figgure i need do some stuff. had the righ ttoe to say a word but no one listen, and the ink i used waan the worst kind of black. was supposed to be clear an easy to follow not like this big messy thing. made it long and full no of blanck space, not good atall like i was in a hurin. still done as they need something to look pro but actually was pretty dumb. i guess the papers need a little more life. just had tto hand in somthin. just waz so rught to nothin at all like a legal document shuld do.",
+      "Matter": "54321-Morgan\n\u0022Non-Billable\u0022 Time Tracking",
+      "User": "Jordan Hill",
+      "Quantity": 1.8429614507738874,
+      "Rate": 375,
+      "NonBillable": 691.1105440402077,
+      "Billable": 0
+    }
+  ]
+}
