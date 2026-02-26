@@ -5,9 +5,11 @@ using OllamaSharp;
 using OllamaSharp.Models;
 using OllamaSharp.Models.Chat;
 
-public class OllamaFunc
+public class OllamaFunc(bool debug)
 {
     private const string DefaultModel = "qwen3:4b-instruct";
+    private bool DEBUG = debug;
+
     public string SelectedModel
     {
         get => Client.SelectedModel;
@@ -16,8 +18,8 @@ public class OllamaFunc
 
     public OllamaApiClient Client { get; set; } = new("http://localhost:11434", DefaultModel);
     public RequestOptions RequestOptions { get; set; } = new() { NumCtx = 2048, Temperature = 3.0f };
-    public string[] AcceptedTypes { get; set; } = ["Drafting prenuptial agreements", "Representing clients in custody hearings", "Mediating property division settlements"];
-    public string[] BillPitfalls { get; set; } = ["incomplete, short, and vague", "confusing and contains multiple grammatical errors", "unprofessional and contains multiple typos"];
+    public string[] AcceptedTypes { get; set; } = ["Drafting prenuptial agreements", "Representing clients in custody hearings", "Mediating property division settlements", "Internal meeting"];
+    public string[] BillPitfalls { get; set; } = ["incomplete, short, and vague", "very short, only a few words long", "confusing and contains multiple grammatical errors", "unprofessional and contains multiple typos"];
 
     public record BillRecord(DateOnly Date, string Type, string Description, string Matter, string User, double Quantity, double Rate, double NonBillable, double Billable);
 
@@ -73,7 +75,7 @@ public class OllamaFunc
 
             var desc = await ChatWithStream(NewRequest([
                 new(ChatRole.System, "You are a legal billing assistant. You output ONLY the narrative text for a single invoice line item. No headers, no footers, no metadata, and no currency amounts."),
-                new(ChatRole.User, $"Write a billing description for the legal task: '{type}'.\nThe description must be {(valid ? "one-paragraph, detailed, clear, and professional" : BillPitfalls[Random.Shared.Next(BillPitfalls.Length)])}.\nDo not include a bill header or invoice number. Start immediately with the description text. {(valid ? "" : "Keep it under 8 sentences. Ensure that it isn't overly bad, it should just be inadequate, lacking, or unprofessional.")}")
+                new(ChatRole.User, $"Write a billing description for the legal task: '{type}'.\nThe description must be {(valid ? "one-paragraph, detailed, clear, and professional" : BillPitfalls[Random.Shared.Next(BillPitfalls.Length)])}.\nDo not include a bill header or invoice number. Start immediately with the description text. {(valid ? "Keep it under 4 sentences." : "Keep it under 4 sentences. Ensure that it isn't overly bad, it should just be inadequate, lacking, or unprofessional.")}")
             ]));
             ArgumentNullException.ThrowIfNull(desc);
 
@@ -118,7 +120,7 @@ public class OllamaFunc
             if (chunk is null)
                 continue;
 
-#if DEBUG
+            if (DEBUG)
             { // Print current token from model
                 var fg = Console.ForegroundColor;
 
@@ -136,7 +138,6 @@ public class OllamaFunc
 
                 Console.ForegroundColor = fg;
             }
-#endif
 
             if (!string.IsNullOrEmpty(chunk.Message.Content))
             {
@@ -156,7 +157,7 @@ public class OllamaFunc
         if (chunk is null)
             return null;
 
-#if DEBUG
+        if (DEBUG)
         { // Print current token from model
             var fg = Console.ForegroundColor;
 
@@ -174,7 +175,6 @@ public class OllamaFunc
 
             Console.ForegroundColor = fg;
         }
-#endif
 
         return chunk.Message.Content;
 

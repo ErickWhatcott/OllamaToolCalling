@@ -1,22 +1,29 @@
-using System.Text.Json;
+using System.Globalization;
+using CsvHelper;
 
+const bool DEBUG = false;
 const int LAWYERS = 8;
 const int CLIENTS = 25;
 const int BILLS = 100;
 
-OllamaFunc func = new();
+string outputPath = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+    "Downloads",
+    "output.csv"
+);
+
+OllamaFunc func = new(DEBUG);
 var lawyers = await func.GenerateLawyerNames(count: LAWYERS);
 var clients = await func.GenerateClients(count: CLIENTS);
-var bills = await AsyncEnumerable.Range(0, count: BILLS).SelectAsync(async i => await func.GenerateBillable(lawyers, clients, DateTime.Today.AddDays(-7), DateTime.Today)).ToListAsync();
-
-var response = new DataResponse
+var bills = await AsyncEnumerable.Range(0, count: BILLS).SelectAsync(async i =>
 {
-    Lawyers = lawyers,
-    Clients = clients,
-    Bills = bills,
-};
+    Console.WriteLine($"Making bill {i}");
+    return await func.GenerateBillable(lawyers, clients, DateTime.Today.AddDays(-7), DateTime.Today);
+}).ToListAsync();
 
-Console.WriteLine(JsonSerializer.Serialize(response, new JsonSerializerOptions
-{
-    WriteIndented = true,
-}));
+using var writer = new StreamWriter(outputPath, false);
+using var csv = new CsvWriter(writer, CultureInfo.CurrentCulture);
+
+csv.WriteHeader<OllamaFunc.BillRecord>();
+foreach (var bill in bills)
+    csv.WriteRecord(bill);
