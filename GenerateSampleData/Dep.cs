@@ -75,7 +75,7 @@ public class OllamaFunc(bool debug)
 
             var desc = await ChatWithStream(NewRequest([
                 new(ChatRole.System, "You are a legal billing assistant. You output ONLY the narrative text for a single invoice line item. No headers, no footers, no metadata, and no currency amounts."),
-                new(ChatRole.User, $"Write a billing description for the legal task: '{type}'.\nThe description must be {(valid ? "one-paragraph, detailed, clear, and professional" : BillPitfalls[Random.Shared.Next(BillPitfalls.Length)])}.\nDo not include a bill header or invoice number. Start immediately with the description text. {(valid ? "Keep it under 4 sentences." : "Keep it under 4 sentences. Ensure that it isn't overly bad, it should just be inadequate, lacking, or unprofessional.")}")
+                new(ChatRole.User, $"Write a billing description for the legal task: '{type}'.\nThe description must be {(valid ? "one-paragraph, detailed, clear, and professional" : BillPitfalls[Random.Shared.Next(BillPitfalls.Length)])}.\nDo not include a bill header or invoice number. Start immediately with the description text. Only include the description text. {(valid ? "Keep it under 4 sentences." : "Keep it under 4 sentences. Ensure that it isn't overly bad, it should just be inadequate, lacking, or unprofessional.")}")
             ]));
             ArgumentNullException.ThrowIfNull(desc);
 
