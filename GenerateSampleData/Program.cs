@@ -24,6 +24,7 @@ var bills = await AsyncEnumerable.Range(0, count: BILLS).SelectAsync(async i =>
 using var writer = new StreamWriter(outputPath, false);
 using var csv = new CsvWriter(writer, CultureInfo.CurrentCulture);
 
-csv.WriteHeader<OllamaFunc.BillRecord>();
-foreach (var bill in bills)
-    csv.WriteRecord(bill);
+// csv.WriteHeader<OllamaFunc.BillRecord>();
+csv.WriteRecords(bills);
+// foreach (var bill in bills)
+//     csv.WriteRecord(bill);
