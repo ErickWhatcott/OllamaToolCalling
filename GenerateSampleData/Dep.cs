@@ -7,22 +7,37 @@ using OllamaSharp.Models.Chat;
 
 public class OllamaFunc(bool debug)
 {
+    // The default model.
     private const string DefaultModel = "qwen3:4b-instruct";
+    
+    // Whether to print out the LLM responses.
     private bool DEBUG = debug;
 
+    // The model used by any function.
     public string SelectedModel
     {
         get => Client.SelectedModel;
         set => Client.SelectedModel = SelectedModel;
     }
 
+    // The Ollama wrapper. This handles networking, interfacing with Ollama, and default configurations.
     public OllamaApiClient Client { get; set; } = new("http://localhost:11434", DefaultModel);
+
+    // Default request options used when querying ollama.
     public RequestOptions RequestOptions { get; set; } = new() { NumCtx = 2048, Temperature = 3.0f };
+
+    // The different types of bills that can exist.
+    // i.e. the types of work that the lawyers will do.
     public string[] AcceptedTypes { get; set; } = ["Drafting prenuptial agreements", "Representing clients in custody hearings", "Mediating property division settlements", "Internal meeting"];
+
+    // Defines a list of different 'pitfalls' that the LLM will use when generating bad bills.
+    // A pitfall is chosen at random and injected into the prompt, so it will generate a bill description specifically tailored to the pitfall.
     public string[] BillPitfalls { get; set; } = ["incomplete, short, and vague", "very short, only a few words long", "confusing and contains multiple grammatical errors", "unprofessional and contains multiple typos"];
 
+    // A data structure to hold all bill record
     public record BillRecord(DateOnly Date, string Type, string Description, string Matter, string User, double Quantity, double Rate, double NonBillable, double Billable);
 
+    // Uses the LLM to generate a list of lawyer names
     public async Task<string[]> GenerateLawyerNames(int count, int retries = 3)
     {
         return await RunWithRetries(async () =>
@@ -44,6 +59,7 @@ public class OllamaFunc(bool debug)
         }, retries);
     }
 
+    // Uses the LLM to generate a CSV of client names.
     public async Task<string[]> GenerateClients(int count, int retries = 3)
     {
         return await RunWithRetries(async () =>
@@ -65,6 +81,9 @@ public class OllamaFunc(bool debug)
         }, retries);
     }
 
+    // Generates a bill record based on the specified parameters.
+    // It will be assigned to one of the lawyers and one of the clients specified.
+    // It will take class between the start and end date.
     public async Task<BillRecord> GenerateBillable(string[] lawyers, string[] clients, DateTime start, DateTime end, int retries = 3)
     {
         return await RunWithRetries(async () =>
@@ -90,6 +109,9 @@ public class OllamaFunc(bool debug)
         }, retries);
     }
 
+
+    // Due to the high temperature (3.0), the models can often return wrong information or return data in a bad format.
+    // This retries the action up to the specified number of times, properly accounting for this.
     private async Task<T> RunWithRetries<T>(Func<Task<T>> action, int retries)
     {
     start:
@@ -109,6 +131,10 @@ public class OllamaFunc(bool debug)
         }
     }
 
+    // Streams the response from ollama.
+    // Streaming is when the application recieves every token one at a time,
+    // rather than it all being buffered. This helps with debugging because you can see it think,
+    // and it's useful for long responses because it every token resets the patience of the client.
     private async Task<string> ChatWithStream(ChatRequest request)
     {
         request.Stream = true;
@@ -148,38 +174,7 @@ public class OllamaFunc(bool debug)
         return sb.ToString();
     }
 
-    private async Task<string?> ChatWithoutStream(ChatRequest request)
-    {
-        request.Stream = false;
-
-        var chat = Client.ChatAsync(request);
-        var chunk = await chat.FirstAsync();
-        if (chunk is null)
-            return null;
-
-        if (DEBUG)
-        { // Print current token from model
-            var fg = Console.ForegroundColor;
-
-            if (chunk.Message.Thinking is string thinking)
-            {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write(thinking);
-            }
-
-            if (!string.IsNullOrEmpty(chunk.Message.Content))
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write(chunk.Message.Content);
-            }
-
-            Console.ForegroundColor = fg;
-        }
-
-        return chunk.Message.Content;
-
-    }
-
+    // Simple method to save code when using the default request options and model
     private ChatRequest NewRequest(IEnumerable<Message> messages, string? model = null, RequestOptions? options = null)
     {
         return new ChatRequest
