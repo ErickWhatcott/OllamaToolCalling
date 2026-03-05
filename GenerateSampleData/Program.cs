@@ -21,7 +21,7 @@ string outputPath = Path.Combine(
 
 OllamaFunc func = new(DEBUG)
 {
-    EnableThinking = true,
+    EnableThinking = false,
     SelectedModel = "qwen3.5:9b"
 };
 
