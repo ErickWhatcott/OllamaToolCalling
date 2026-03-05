@@ -19,7 +19,12 @@ string outputPath = Path.Combine(
     "output.csv"
 );
 
-OllamaFunc func = new(DEBUG);
+OllamaFunc func = new(DEBUG)
+{
+    EnableThinking = true,
+    SelectedModel = "qwen3.5:9b"
+};
+
 var lawyers = await func.GenerateLawyerNames(count: LAWYERS);
 var clients = await func.GenerateClients(count: CLIENTS);
 var bills = await AsyncEnumerable.Range(0, count: BILLS).SelectAsync(async i =>

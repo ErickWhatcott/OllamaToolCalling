@@ -13,6 +13,9 @@ public class OllamaFunc(bool debug)
     // Whether to print out the LLM responses.
     private bool DEBUG = debug;
 
+    // Whether the model is allowed to think.
+    public bool EnableThinking { get; set; }
+
     // The model used by any function.
     public string SelectedModel
     {
@@ -181,7 +184,8 @@ public class OllamaFunc(bool debug)
         {
             Messages = messages,
             Model = model ?? SelectedModel,
-            Options = options ?? RequestOptions
+            Options = options ?? RequestOptions,
+            Think = new(EnableThinking),
         };
     }
 }
