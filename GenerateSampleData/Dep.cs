@@ -24,7 +24,11 @@ public class OllamaFunc(bool debug)
     }
 
     // The Ollama wrapper. This handles networking, interfacing with Ollama, and default configurations.
-    public OllamaApiClient Client { get; set; } = new("http://localhost:11434", DefaultModel);
+    public OllamaApiClient Client { get; set; } = new(new HttpClient
+    {
+        BaseAddress = new("http://localhost:11434"),
+        Timeout = TimeSpan.FromMinutes(10),
+    }, DefaultModel);
 
     // Default request options used when querying ollama.
     public RequestOptions RequestOptions { get; set; } = new() { NumCtx = 2048, Temperature = 3.0f };
